@@ -46,7 +46,7 @@
       n <- 20  
       p <- 0.2
    ```
-    - Peluang terdapat 4 pasien yang sembuh.
+   - Peluang terdapat 4 pasien yang sembuh.
     ```R
       # a
       vr <- 4 # variable random yang menyatakan jumlah pasien covid
@@ -56,14 +56,49 @@
       result <- comb (n, vr) * p^vr * (1 - p)^(n - vr)
       result
    ```
-    - Gambarkan grafik histogram berdasarkan kasus tersebut.
+   - Gambarkan grafik histogram berdasarkan kasus tersebut.
     ```R
       # b
       hist(rbinom(vr, n, prob = p), xlab = "X", ylab = "Frekuensi",main = "Histogram Distribusi binomial")
-    ```
-    - Nilai Rataan (μ) dan Varian (σ2) dari Distribusi Binomial.
+   ```
+   - Nilai Rataan (μ) dan Varian (σ2) dari Distribusi Binomial.
     ```R
       # c
       rataan <- n * p
       varians <- n * p * (1-p)
-    ```
+  ```   
+## soal 3
+  > Diketahui data dari sebuah tempat bersalin di rumah sakit tertentu menunjukkan rata-rata historis
+  4,5 bayi lahir di rumah sakit ini setiap hari. (gunakan Distribusi Poisson)
+  ```R
+     lambda <- 4.5   # parameter yang menyatakan rata" kejadian sukses dalam interval waktu tertentu
+     x <- 6
+  ```  
+ - Berapa peluang bahwa 6 bayi akan lahir di rumah sakit ini besok?
+  ```R
+     # a
+     ppois(x, lambda = lambda, lower = FALSE)
+  ```
+ - simulasikan dan buatlah histogram kelahiran 6 bayi akan lahir di rumah sakit ini selama
+setahun (n = 365)
+  ```R
+    # b
+    x <- 6
+    n <- 365
+    result <- dpois(1:365, lambda = lambda, log=FALSE)
+    hist(result, xlab = "probabilitas", ylab = "hari", main = 'HISTOGRAM POISSON')
+ ```
+ - dan bandingkan hasil poin a dan b , Apa kesimpulan yang bisa didapatkan
+ ```R
+     # c
+     a <- summary(ppois(x, lambda = lambda, lower = FALSE))
+     a
+     b <- summary(result)
+     b
+ ```
+ - Nilai Rataan (μ) dan Varian (σ2) dari Distribusi Poisson.
+  ```R
+     # d
+    rataan <- varians <- lambda
+ ```
+ 
