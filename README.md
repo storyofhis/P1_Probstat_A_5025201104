@@ -102,3 +102,106 @@ setahun (n = 365)
     rataan <- varians <- lambda
  ```
  
+## soal 4
+> Diketahui nilai x = 2 dan v = 10. Tentukan:
+  ```R
+    x <- 2
+    v <- 10
+ ```
+ - Fungsi Probabilitas dari Distribusi Chi-Square.
+  ```R
+    # a
+   ans <- dchisq(x, v, ncp = 0, log = FALSE)
+ ```
+ - Histogram dari Distribusi Chi-Square dengan 100 data random.
+  ```R
+    # b
+   set.seed(100)
+   curve(result <- rchisq(x, v, ncp = 0), from = 0, to = 100 ,xlab='x', ylab="v", main="HISTOGRAM POISSON")
+ ```
+ - Nilai Rataan (μ) dan Varian (σ2) dari Distribusi Chi-Square.
+  ```R
+    # c
+    rataan <- v
+    varians <- 2 * v
+ ```
+ 
+## soal 5
+> Diketahui bilangan acak (random variable) berdistribusi exponential (λ = 3). Tentukan
+  ```R
+    lambda <- 3
+ ```
+- Fungsi Probabilitas dari Distribusi Exponensial
+  ```R
+    # a
+    expo <- function (lambda, x){
+    if (lambda > 0) {
+      return((1/lambda) * exp(x/lambda*-1))
+    }
+      return (0)
+    }
+ ```
+- Histogram dari Distribusi Exponensial untuk 10, 100, 1000 dan 10000 bilangan random
+  ```R
+    # b
+    set.seed(1)
+    N <- 10
+    rexp(N, lambda)
+    hist(rexp(N, lambda))
+
+    N <- 100
+    rexp(N, lambda)
+    hist(rexp(N, lambda))
+
+    N <- 1000
+    rexp(N, lambda)
+    hist(rexp(N, lambda))
+
+    N <- 10000
+    rexp(N, lambda)
+    hist(rexp(N, lambda))
+ ```
+ 
+ - Nilai Rataan (μ) dan Varian (σ2) dari Distribusi Exponensial untuk n = 100 dan λ = 3
+   ```R
+    # c
+    rataan <- lambda
+    varians <- lambda^2
+ ```
+
+## soal 6
+> Diketahui generate random nilai sebanyak 100 data, mean = 50, sd = 8. Tentukan
+  ```R
+   n <- 100
+   m <- 50
+   std.deviasi <- 8
+```
+- Fungsi Probabilitas dari Distribusi Normal P(X1 ≤ x ≤ X2), hitung Z-Score Nya dan plot
+data generate randomnya dalam bentuk grafik. Petunjuk(gunakan fungsi plot()).
+  ```R
+   # a)  x ~ N(50, 8)
+   set.seed(100)
+   random <- rnorm(100)
+   rata.rata <- mean(random)
+   x1 <- floor(rata.rata)
+   x2 <- ceiling(rata.rata)
+
+   z1 <- (x1 - m) / std.deviasi
+   z2 <- (x2 - m) / std.deviasi
+   #   zscores <- c(z1,z2)
+   #   plot(zscores, type = "o")
+   rnorm(n = 100, mean = m, sd = std.deviasi)
+   plot(rnorm(n = 100, mean = m, sd = std.deviasi))
+
+   pdf.normal <- pnorm(x2, m, std.deviasi, lower.tail = TRUE) - pnorm(x2, m, std.deviasi, lower.tail = TRUE)
+```
+- Generate Histogram dari Distribusi Normal dengan breaks 50 dan format penamaan:
+ ```R
+   # b)
+   hist(rnorm(n = 100, mean = m, sd = std.deviasi), xlab="x", ylab="y" ,breaks = 50, main = "5025201104_Maula Izza Azizi_Probstat_A_DNhistogram")
+```
+- Nilai Varian (σ2) dari hasil generate random nilai Distribusi Normal.
+  ```R
+   # c)
+   varians <- std.deviasi ** 2
+```
